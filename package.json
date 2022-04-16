@@ -13,6 +13,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "buildCI": "CI= react-scripts build",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
