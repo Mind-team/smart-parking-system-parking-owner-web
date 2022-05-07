@@ -2,38 +2,38 @@ input {
 	padding: 10px;
 	margin-bottom: -5px;
 	margin-left: 40%;
-    margin-top: 40px;
+  margin-top: 40px;
 	width: 15%;
 	height: 10px;
 	border: 1px solid #886eed;
-    border-radius: 10px;
-    border-width: 2px;
+  border-radius: 10px;
+  border-width: 2px;
 }
 
 input:focus {
-    background: #808080;
-    border-color: #808080;
-    outline: none;
-  }
+  background: #808080;
+  border-color: #808080;
+  outline: none;
+}
 
-  input:focus::placeholder {
-    color: transparent;
-  }
+input:focus::placeholder {
+  color: transparent;
+}
 
-  button {
-    padding: 10px;
-	width: 5%;
-	height: 20px;
-	background: #886eed;
-    border-radius: 10px;
-    color: #fff;
-    border-color: #886eed;
-    align-items: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 30px -70px; 
-    position: relative;
-    top: 50%; 
-    left: 50%;
-  }
+button {
+  padding: 10px;
+  width: 5%;
+  height: 20px;
+  background: #886eed;
+  border-radius: 10px;
+  color: #fff;
+  border-color: #886eed;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px -70px; 
+  position: relative;
+  top: 50%; 
+  left: 50%;
+}
