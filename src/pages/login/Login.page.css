@@ -1,11 +1,11 @@
 input {
-	padding: 10px;
-	margin-bottom: -5px;
-	margin-left: 40%;
+  padding: 10px;
+  margin-bottom: -5px;
+  margin-left: 40%;
   margin-top: 40px;
-	width: 15%;
-	height: 10px;
-	border: 1px solid #886eed;
+  width: 15%;
+  height: 10px;
+  border: 1px solid #886eed;
   border-radius: 10px;
   border-width: 2px;
 }
@@ -43,4 +43,3 @@ button {
   justify-content: center;
   color: red;
 }
-/* чтобы гитхаб десктоп среагировал на изменение */
