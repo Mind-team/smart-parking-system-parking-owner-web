@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.page.css";
 
 function encodingToB64(str) {
@@ -6,9 +7,12 @@ function encodingToB64(str) {
 }
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
+  const [currentLogin, setCurrentLogin] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [isError, setError] = useState(false);
+
   const checkResponse = function () {
-    const username = currentLogin;
-    const password = currentPassword;
     const path = "http://5.53.124.242:5050";
 
     async function getResponse() {
@@ -16,27 +20,22 @@ export const LoginPage = () => {
         `${path}/api/v1/parking-owner/parking-list`,
         {
           headers: {
-            Authorization: "Auth " + encodingToB64(username + ":" + password),
+            Authorization:
+              "Auth " + encodingToB64(currentLogin + ":" + currentPassword),
           },
         }
       );
+      const data = await response.json();
 
-      const handleInput = () => {
-        if (response.status != 200) {
-          setError(true);
-        } else {
-          setError(false);
-        }
-      };
-      handleInput();
+      if (response.ok) {
+        navigate("/parkings", { state: data });
+      } else {
+        setError(true);
+      }
     }
 
     getResponse();
   };
-
-  const [currentLogin, setCurrentLogin] = useState("");
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [isError, setError] = useState(false);
 
   const handleChangeLogin = (event) => {
     setCurrentLogin(event.target.value);
@@ -54,13 +53,13 @@ export const LoginPage = () => {
           placeholder="Логин"
           value={currentLogin}
           onChange={handleChangeLogin}
-        ></input>
+        />
         <input
           placeholder="Пароль"
           value={currentPassword}
           onChange={handleChangePassword}
           type="password"
-        ></input>
+        />
         <button onClick={checkResponse}>Войти</button>
         {isError && <div className="error">Неправильный логин или пароль!</div>}
       </div>
