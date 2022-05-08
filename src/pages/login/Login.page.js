@@ -20,25 +20,15 @@ export const LoginPage = () => {
           },
         }
       );
-      // const content = await response.json();
-      // let key;
 
-      // if (response.status === 200) {
-      //   // eslint-disable-next-line guard-for-in
-      //   for (key in content) {
-      //     return <h2>${content[key].title}</h2>;
-      //   }
-      // } else {
-      //   // alert("Неверный логин или пароль!");
-      // }
-      //   function checkError() {
-      //   if (response.status != 200) {
-      //     return <h2>Ошибка</h2>;
-      //   }
-      // }
-      if (response.status != 200) {
-        alert("Неверный логин или пароль!");
-      }
+      const handleInput = () => {
+        if (response.status != 200) {
+          setError(true);
+        } else {
+          setError(false);
+        }
+      };
+      handleInput();
     }
 
     getResponse();
@@ -46,6 +36,7 @@ export const LoginPage = () => {
 
   const [currentLogin, setCurrentLogin] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
+  const [isError, setError] = useState(false);
 
   const handleChangeLogin = (event) => {
     setCurrentLogin(event.target.value);
@@ -58,7 +49,6 @@ export const LoginPage = () => {
   return (
     <div>
       Login Page
-      {/* {checkError} */}
       <div>
         <input
           placeholder="Логин"
@@ -72,6 +62,7 @@ export const LoginPage = () => {
           type="password"
         ></input>
         <button onClick={checkResponse}>Войти</button>
+        {isError && <div className="error">Неправильный логин или пароль!</div>}
       </div>
     </div>
   );

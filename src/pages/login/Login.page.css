@@ -37,3 +37,9 @@ button {
   top: 50%; 
   left: 50%;
 }
+
+.error {
+  display: flex;
+  justify-content: center;
+  color: red;
+}
