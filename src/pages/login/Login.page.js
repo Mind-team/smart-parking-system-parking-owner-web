@@ -47,22 +47,21 @@ export const LoginPage = () => {
 
   return (
     <div>
-      Login Page
-      <div>
-        <input
-          placeholder="Логин"
-          value={currentLogin}
-          onChange={handleChangeLogin}
-        />
-        <input
-          placeholder="Пароль"
-          value={currentPassword}
-          onChange={handleChangePassword}
-          type="password"
-        />
-        <button onClick={checkResponse}>Войти</button>
-        {isError && <div className="error">Неправильный логин или пароль!</div>}
-      </div>
+      <input
+        placeholder="Логин"
+        value={currentLogin}
+        onChange={handleChangeLogin}
+      />
+      <input
+        placeholder="Пароль"
+        value={currentPassword}
+        onChange={handleChangePassword}
+        type="password"
+      />
+      <button className="checkResponse" onClick={checkResponse}>
+        Войти
+      </button>
+      {isError && <div className="error">Неправильный логин или пароль!</div>}
     </div>
   );
 };
