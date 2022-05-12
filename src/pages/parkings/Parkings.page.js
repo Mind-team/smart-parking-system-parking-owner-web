@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { CreateParkingsInfo } from "../../components/CreateParkingsInfo.component";
-import styles from "../../components/CreateParkingsInfo.module.css";
+import styles from "./Parkings.page.module.css";
 
 export const ParkingsPage = () => {
   const location = useLocation();
