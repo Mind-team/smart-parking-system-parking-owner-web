@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.page.css";
+import styles from "./Login.page.module.css";
 
 function encodingToB64(str) {
   return window.btoa(unescape(encodeURIComponent(str)));
@@ -58,10 +58,12 @@ export const LoginPage = () => {
         onChange={handleChangePassword}
         type="password"
       />
-      <button className="checkResponse" onClick={checkResponse}>
+      <button className={styles.checkResponse} onClick={checkResponse}>
         Войти
       </button>
-      {isError && <div className="error">Неправильный логин или пароль!</div>}
+      {isError && (
+        <div className={styles.error}>Неправильный логин или пароль!</div>
+      )}
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import { useLocation } from "react-router-dom";
 import { CreateParkingsInfo } from "../../components/CreateParkingsInfo.component";
+import styles from "../../components/CreateParkingsInfo.module.css";
 
 export const ParkingsPage = () => {
   const location = useLocation();
-  // console.log(location.state);
+  console.log(location.state);
 
   // const test = [
   //   { title: "Привет", activeParkingProcessIds: [1, 2, 3] },
@@ -23,7 +24,7 @@ export const ParkingsPage = () => {
   // ];
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       {location.state.map((item, id) => {
         return (
           <CreateParkingsInfo

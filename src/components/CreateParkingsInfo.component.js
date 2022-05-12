@@ -1,11 +1,11 @@
-import "./CreateParkingsInfo.css";
+import styles from "./CreateParkingsInfo.module.css";
 
 export const CreateParkingsInfo = (data) => {
   return (
-    <div className="box">
-      <div className="title">{data.title}</div> <br />
-      <div className="busy">Занятых мест: {data.busy}</div>
-      <button className="detail">Подробнее</button>
+    <div className={styles.box}>
+      <div className={styles.title}>{data.title}</div> <br />
+      <div className={styles.busy}>Занятых мест: {data.busy}</div>
+      <button className={styles.detail}>Подробнее</button>
     </div>
   );
 };
