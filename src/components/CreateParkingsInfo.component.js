@@ -1,3 +1,5 @@
+import "./CreateParkingsInfo.css";
+
 export const CreateParkingsInfo = (data) => {
   return (
     <div className="box">
