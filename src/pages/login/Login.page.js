@@ -29,6 +29,8 @@ export const LoginPage = () => {
 
       if (response.ok) {
         navigate("/parkings", { state: data });
+        localStorage.setItem("login", currentLogin);
+        localStorage.setItem("password", currentPassword);
       } else {
         setError(true);
       }
