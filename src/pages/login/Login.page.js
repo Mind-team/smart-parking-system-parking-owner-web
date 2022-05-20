@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.page.module.css";
 import { encodingToB64 } from "../../utils/encodingToB64.js";
-
-encodingToB64();
+import { path } from "../../utils/path";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -12,8 +11,6 @@ export const LoginPage = () => {
   const [isError, setError] = useState(false);
 
   const checkResponse = function () {
-    const path = "http://5.53.124.242:5050";
-
     async function getResponse() {
       const response = await fetch(
         `${path}/api/v1/parking-owner/parking-list`,
@@ -28,8 +25,10 @@ export const LoginPage = () => {
 
       if (response.ok) {
         navigate("/parkings", { state: data });
-        localStorage.setItem("login", currentLogin);
-        localStorage.setItem("password", currentPassword);
+        localStorage.setItem(
+          "token",
+          encodingToB64(currentLogin + ":" + currentPassword)
+        );
       } else {
         setError(true);
       }
