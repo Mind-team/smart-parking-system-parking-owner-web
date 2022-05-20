@@ -9,12 +9,12 @@ function encodingToB64(str) {
 
 export const InfoParkingsPage = () => {
   const [dataTitle, setdataTitle] = useState("");
-  const [dataData, setdataData] = useState("");
+  const [isLoading, setLoading] = useState(false);
+  const [array, setArray] = useState([]);
   const id = useParams();
-  // const id = 972269a0-b317-4318-9c54-4652ce57d419;
 
   useEffect(() => {
-    // console.log(id);
+    console.log(id);
     const path = "http://5.53.124.242:5050";
 
     async function getResponse() {
@@ -32,34 +32,79 @@ export const InfoParkingsPage = () => {
           },
         }
       );
-      // const data = await response.json();
-      setdataData(await response.json());
-      // localStorage.setItem("title", data.title);
-      setdataTitle(dataData.title);
-      // let numbers = "";
-      // dataData.activeParkingProcess.map((item) => {
-      //   // numbers += " " + item.transport.plate;
-      //   setdataCarNumbers(item.transport.plate);
-      // });
-      // localStorage.setItem("numbers", numbers);
-
-      // console.log(data.activeParkingProcess[0].transport.plate);
+      const data = await response.json();
+      setLoading(true);
+      setdataTitle(data.title);
+      setArray(data.activeParkingProcess);
     }
 
     getResponse();
-  });
+  }, []);
 
   // const kek =
   //   "А999АА А999АА А999АА А999АА А999АА А999АА А999АА А999АА А999АА А999АА А999АА А999АА  А999АА А999АА А999АА А999АА А999АА";
   // console.log(dataData);
-  return (
-    <div>
-      <div className={styles.title}>{dataTitle}</div>
-      <div className={styles.now}>Сейчас на паркинге</div>
-      {dataData.activeParkingProcess.map((item, id) => {
-        return <CreateCarNumbers key={id} numbers={item.transport.plate} />;
-      })}
-      {/* <div className={styles.carNumbers}>{dataCarNumbers}</div> */}
-    </div>
-  );
+  // const arrayTest = [
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  //   { plate: "А999УУ" },
+  // ];
+  if (isLoading) {
+    return (
+      <div>
+        <div className={styles.title}>{dataTitle}</div>
+        <div className={styles.now}>Сейчас на паркинге</div>
+        {array.map((item, id) => {
+          return <CreateCarNumbers key={id} numbers={item.transport.plate} />;
+        })}
+      </div>
+    );
+  } else {
+    return <div>Загрузка</div>;
+  }
 };
