@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import React, { useState } from "react";
 import styles from "./infoParkings.page.module.css";
 import { CreateCarNumbers } from "../../components/CreateCarNumbers.component.js";
-function encodingToB64(str) {
-  return window.btoa(unescape(encodeURIComponent(str)));
-}
+import { encodingToB64 } from "../../utils/encodingToB64.js";
+
+encodingToB64();
 
 export const InfoParkingsPage = () => {
   const [dataTitle, setdataTitle] = useState("");
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [array, setArray] = useState([]);
   const id = useParams();
 
@@ -33,7 +33,7 @@ export const InfoParkingsPage = () => {
         }
       );
       const data = await response.json();
-      setLoading(true);
+      setLoading(false);
       setdataTitle(data.title);
       setArray(data.activeParkingProcess);
     }
@@ -95,6 +95,8 @@ export const InfoParkingsPage = () => {
   //   { plate: "А999УУ" },
   // ];
   if (isLoading) {
+    return <div>Загрузка</div>;
+  } else {
     return (
       <div>
         <div className={styles.title}>{dataTitle}</div>
@@ -104,7 +106,5 @@ export const InfoParkingsPage = () => {
         })}
       </div>
     );
-  } else {
-    return <div>Загрузка</div>;
   }
 };

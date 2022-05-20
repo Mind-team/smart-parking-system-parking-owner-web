@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.page.module.css";
+import { encodingToB64 } from "../../utils/encodingToB64.js";
 
-function encodingToB64(str) {
-  return window.btoa(unescape(encodeURIComponent(str)));
-}
+encodingToB64();
 
 export const LoginPage = () => {
   const navigate = useNavigate();
