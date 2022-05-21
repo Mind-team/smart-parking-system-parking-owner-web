@@ -12,8 +12,6 @@ export const InfoParkingsPage = () => {
   const id = useParams();
 
   useEffect(() => {
-    console.log(id);
-
     async function getResponse() {
       const response = await fetch(
         `${path}/api/v1/parking-owner/parking/${id.id}`,
