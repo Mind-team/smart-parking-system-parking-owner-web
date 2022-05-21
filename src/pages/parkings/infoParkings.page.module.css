@@ -1,0 +1,19 @@
+.title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 56px;
+    color: #000000;
+    margin-top: 12px;
+    margin-left: 154px;
+}
+
+.now {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    color: #000000;
+    margin-top: 12px;
+    margin-left: 154px;
+}
