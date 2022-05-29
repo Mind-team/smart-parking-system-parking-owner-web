@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import styles from "./infoParkings.page.module.css";
 import { CreateCarNumbers } from "../../components/CreateCarNumbers.component.js";
 import { path } from "../../utils/path";
+import { LoaderWrapper, useFormatter } from "sps-ui";
 
 export const InfoParkingsPage = () => {
+  const formatter = useFormatter();
   const [dataTitle, setdataTitle] = useState("");
   const [isLoading, setLoading] = useState(true);
   const [arrayParkingProcess, setArrayParkingProcess] = useState([]);
@@ -32,11 +34,9 @@ export const InfoParkingsPage = () => {
     getResponse();
   }, []);
 
-  if (isLoading) {
-    return <div>Загрузка</div>;
-  } else {
-    return (
-      <div>
+  return (
+    <div>
+      <LoaderWrapper isLoading={isLoading}>
         <div className={styles.title}>{dataTitle}</div>
         <div className={styles.now}>Сейчас на паркинге</div>
         {arrayParkingProcess.map((item, id) => {
@@ -46,13 +46,10 @@ export const InfoParkingsPage = () => {
               numbers={item.transport.plate}
               click={() => {
                 const timeOfEntry = item.time.entry;
-                const year = timeOfEntry.substring(0, 4);
-                const month = timeOfEntry.substring(5, 7);
-                const day = timeOfEntry.substring(8, 10);
-                const hours = timeOfEntry.substring(11, 13);
-                const minutes = timeOfEntry.substring(14, 16);
                 setTime(
-                  hours + ":" + minutes + " " + day + "." + month + "." + year
+                  formatter("date", timeOfEntry) +
+                    " " +
+                    formatter("time", timeOfEntry)
                 );
                 setPayment(Math.ceil(item.payment.value));
               }}
@@ -65,7 +62,7 @@ export const InfoParkingsPage = () => {
             Сумма на текущий момент: {payment} рублей
           </div>
         )}
-      </div>
-    );
-  }
+      </LoaderWrapper>
+    </div>
+  );
 };
