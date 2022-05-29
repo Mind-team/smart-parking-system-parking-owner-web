@@ -7,4 +7,10 @@
     margin-top: 12px;
     margin-left: 154px;
     display: inline-block;
+    background-color: transparent;
+    cursor: pointer;
+    border: 0;
+}
+.carNumbers:focus {
+    color: red;
 }
