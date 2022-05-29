@@ -59,7 +59,7 @@ export const InfoParkingsPage = () => {
             />
           );
         })}
-        {time && <div className={styles.time}>Заехал в {time}</div>}
+        {time && <div className={styles.time}>Заехал(а) в {time}</div>}
         {payment && (
           <div className={styles.payment}>
             Сумма на текущий момент: {payment} рублей
