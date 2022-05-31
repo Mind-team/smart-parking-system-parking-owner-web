@@ -29,7 +29,6 @@ export const InfoParkingsPage = () => {
       setLoading(false);
       setdataTitle(data.title);
       setArrayParkingProcess(data.activeParkingProcess);
-      console.log(data);
     }
     getResponse();
   }, []);
