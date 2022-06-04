@@ -13,6 +13,7 @@ export const InfoParkingsPage = () => {
   const [arrayParkingProcess, setArrayParkingProcess] = useState([]);
   const id = useParams();
   const [time, setTime] = useState("");
+  const [date, setDate] = useState("");
   const [payment, setPayment] = useState("");
 
   useEffect(() => {
@@ -45,17 +46,18 @@ export const InfoParkingsPage = () => {
               numbers={item.transport.plate}
               click={() => {
                 const timeOfEntry = item.time.entry;
-                setTime(
-                  formatter("date", timeOfEntry) +
-                    " " +
-                    formatter("time", timeOfEntry)
-                );
+                setDate(formatter("date", timeOfEntry));
+                setTime(formatter("time", timeOfEntry));
                 setPayment(Math.ceil(item.payment.value));
               }}
             />
           );
         })}
-        {time && <div className={styles.time}>Заехал(а) в {time}</div>}
+        {time && (
+          <div className={styles.time}>
+            Заехал(а) {date} в {time}
+          </div>
+        )}
         {payment && (
           <div className={styles.payment}>
             Сумма на текущий момент: {payment} рублей
